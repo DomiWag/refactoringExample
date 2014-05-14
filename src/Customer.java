@@ -4,14 +4,14 @@ import java.util.*;
 
 class Customer {
     private final String name;
-    private final Vector rentals = new Vector();
+    private final List<Rental> rentals = new ArrayList<Rental>();
 
-    public Customer(String newname) {
-        name = newname;
+    public Customer(String name) {
+        this.name = name;
     }
 
-    public void addRental(Rental arg) {
-        rentals.addElement(arg);
+    public void addRental(Rental aRental) {
+        rentals.add(aRental);
     }
 
     public String getName() {
@@ -19,13 +19,10 @@ class Customer {
     }
 
     public String statement() {
-        Enumeration enum_rentals = rentals.elements();
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
-        while (enum_rentals.hasMoreElements()) {
-            Rental each = (Rental) enum_rentals.nextElement();
-
+        for (Rental each: rentals) {
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(each.getCharge()) + "\n";
         }
@@ -37,9 +34,7 @@ class Customer {
 
     private int getTotalFrequentRenterPoints() {
         int result = 0;
-        Enumeration rentals = this.rentals.elements();
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+        for (Rental each: rentals) {
             result += each.getFrequentRenterPoints();
         }
         return result;
@@ -47,19 +42,15 @@ class Customer {
 
     private double getTotalCharge() {
         double result = 0;
-        Enumeration rentals = this.rentals.elements();
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+        for (Rental each: rentals) {
             result += each.getCharge();
         }
         return result;
     }
 
     public String htmlStatement() {
-        Enumeration rentals = this.rentals.elements();
         String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
+        for (Rental each: rentals) {
             //show figures for each rental
             result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
         }
