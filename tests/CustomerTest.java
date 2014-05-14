@@ -28,4 +28,9 @@ public class CustomerTest extends TestCase {
     public void testStatement() throws Exception {
         assertNotNull(customer.statement());
     }
+
+    @Test
+    public void testHtmlStatement() {
+        assertNotNull(customer.htmlStatement());
+    }
 }
