@@ -5,8 +5,8 @@ import org.junit.Test;
 public class MovieTest extends TestCase {
 
     private final String MOVIE_NAME = "Back to the Future";
-    private final int PRICE_CODE = 1337;
-    private final int NEW_PRICE_CODE = 31337;
+    private final int PRICE_CODE = Movie.REGULAR;
+    private final int NEW_PRICE_CODE = Movie.NEW_RELEASE;
     private Movie movie;
 
     @Before
